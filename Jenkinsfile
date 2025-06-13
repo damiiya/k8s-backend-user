@@ -59,6 +59,10 @@ pipeline {
                             returnStdout: true
                     ).trim()
 
+                    if ( APP_VERSION.endsWith('-SNAPSHOT') ) {
+                         APP_VERSION = APP_VERSION.replace('-SNAPSHOT', '')
+                    }
+
                     DOCKER_IMAGE_NAME = "${DOCKER_REGISTRY}/${APP_NAME}:${APP_VERSION}"
 
                     sh "echo IMAGE_NAME is ${APP_NAME}"
